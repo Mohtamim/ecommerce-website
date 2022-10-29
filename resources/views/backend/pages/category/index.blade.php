@@ -45,22 +45,19 @@
                             <td>{{ $category->title }}</td>
                             <td>{{ $category->slug }}</td>
                             <td>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    setting
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{ route('category.edit', $category->slug) }}">
-                                    <i class="fas fa-edit"></i> Edit</a></li>
-                                    <li>
-                                        <form action="{{ route('category.destroy', $category->slug) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="dropdown-item show_confirm" type="submit"><i class="fas fa-trash"></i> Delete</a></button>
-                                        </form>
-                                    </li>
-                                    </ul>
-                                </div>
+                                <a href="{{ route('category.edit', $category->slug) }}"
+                                            class="btn btn-success btn-sm" title="Edit Customer"
+                                            aria-hidden="true"><i class="fa fa-pen-to-square"></i></a>
+                                <form method="POST"
+                                            action="{{ route('category.destroy', $category->slug) }}"
+                                            accept-charset="UTF-8" style="display:inline">
+                                            {{ method_field('DELETE') }}
+                                            {{ csrf_field() }}
+                                            <button type="submit" class="btn btn-info btn-sm btn-danger show_confirm" aria-hidden="true"><i class="fa-solid fa-trash"></i></button>
+                                </form>
+
+
+
                             </td>
                         </tr>
                     @endforeach
